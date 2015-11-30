@@ -1,5 +1,5 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.phonegap.varunshrivastava" version="1.0.0">
-  <name>VarunShrivastava</name>
+  <name>VS Blogs</name>
   <description>This application let's you to stay connected with Varun and his latest blogs.</description>
   <author href="http://www.varunshrivastava.in" email="vsproductions007@gmail.com">VS Productions</author>
   <content src="index.html"/>

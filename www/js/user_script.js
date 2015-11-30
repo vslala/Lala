@@ -1,3 +1,11 @@
+
+                            
+                            /* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+    
+})();
+
+
 $(document).ready(function(){
 var $base_url = 'http://www.varunshrivastava.in/';
 var $loader = '<center><img src="img/loader.gif" /></center>';
@@ -23,6 +31,7 @@ function getBlogs(){
 					'<p>'+value.content.substring(0, 300)+'...</p>'+
 				'</a>'+
 				'</li>';
+
 				$blogListView.append(li);
 			});
 			$blogListView.listview('refresh');
@@ -43,13 +52,31 @@ $('document, body').on('click', '#blog_item', function(){
 		type: 'GET',
 		success: function(data){
 			data = $.parseJSON(data);
-			console.log(data);
+
 			var html_string = '<div style="width: 100%;"><img style="width: 100%;" src=" ' + data[0].cover_image + '" /></div>'+
 			'<h1>'+data[0].heading+'</h1>'+
 				'<p>'+data[0].content+'</p>'+
 				'<br />'+
 				'<span style="font-family: sans-serif, tahoma; font-weight: bold;" >Total Blog View: ' + data[0].views + '</span>';
 
+				var title = data[0].heading.replace(/\s/g,"-");
+				var page_url = $base_url+'site/blog/'+data[0].id+'/'+title;
+
+				disqus_url = page_url;
+				disqus_title = title;
+				disqus_shortname = 'varunshrivastava';
+				identifier = data[0].id;
+
+				if (identifier !== undefined)
+					disqus_identifier = identifier;
+				else
+					disqus_identifier = "";
+			
+				(function() {
+					var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = false;
+					dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+					(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+				})();
 			$blogPost.html(html_string);
 		},
 		error: function(xhr, status, msg){
@@ -80,6 +107,8 @@ $('#contact_form').submit(function(e){
 		}
 	});
 });
+
+    
 
 
 
